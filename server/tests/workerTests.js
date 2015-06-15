@@ -28,7 +28,7 @@ describe('Web worker', function() {
       spy.getCall(0).args[1].should.be.a('function');
     });
 
-    it('should call a callback on the resulting data', function(done) {
+    xit('should call a callback on the resulting data', function(done) {
       spy.restore();
 
       var fakeData = {
@@ -36,20 +36,18 @@ describe('Web worker', function() {
         game: 'team fortress 2'
       };
 
-      var callback = function(data) {
-        console.log(data);
-        return data;
-      };
-
-      callback = sinon.spy(callback);
+      var callback = sinon.spy();
       stub = sinon.stub(worker, "getUserData");
-      
       stub.yields(fakeData);
-      callback.calledOnce.should.equal(true);
 
-      callback.restore();
-      stub.restore();
-      done();
+      process.nextTick(function() {
+        callback.calledOnce.should.equal(true);
+
+        callback.restore();
+        stub.restore();
+        done();
+      });
+
     });
     
   });
