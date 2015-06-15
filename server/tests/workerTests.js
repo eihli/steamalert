@@ -4,6 +4,18 @@ var sinon = require('sinon');
 
 describe('Web worker', function() {
 
+  describe('alertUser', function() {
+
+    it('should be a function of worker', function() {
+      worker.alertUser.should.be.a('function');
+    });
+
+    it('should call the function from alerts.js', function() {
+      worker.alertUser('email').should.equal("Email sent");
+    });
+
+  });
+
   describe('getUserData', function() {
 
     var spy;
