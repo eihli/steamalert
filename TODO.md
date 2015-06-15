@@ -44,3 +44,6 @@
   - Target table
     - id
     - steam_username
+- Deployment
+  - docker containers
+  - digitalocean
