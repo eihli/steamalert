@@ -1,3 +1,9 @@
+# Current Sprint Items
+- Web Worker
+  - Get a users data from steam either by scraping or api
+  - Log that data to console
+  - Send that data to a users web browser
+
 # Features
 - Friends list
 - Receive email alerts
