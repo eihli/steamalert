@@ -1,4 +1,5 @@
 var request = require('request');
+var nodemailer = require('nodemailer');
 var apiConfig = require('../apiConfig');
 var apiUrl = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
 var USERID = 76561198056532429;
