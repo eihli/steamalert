@@ -11,7 +11,7 @@ describe('Web worker', function() {
     });
 
     it('should call the function from alerts.js', function() {
-      worker.alertUser('email').should.equal("Email sent");
+      worker.alertUser('email', null, 'loktakwah@gmail.com').should.equal("Email sent");
     });
 
   });
