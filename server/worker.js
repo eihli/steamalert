@@ -20,4 +20,6 @@ var getUserData = function(userId, cb) {
     }
   );
 };
-module.exports = getUserData;
+module.exports = {
+  getUserData: getUserData
+};

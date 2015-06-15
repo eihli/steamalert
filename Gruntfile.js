@@ -1,7 +1,11 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
-      files: ['*.js'],
+      files: [
+        'server/**/*.js',
+        'Gruntfile.js',
+        'apiConfig.js'
+      ],
       options: {
         globals: {
 
@@ -10,6 +14,16 @@ module.exports = function(grunt) {
     },
     mochaTest: {
       src: ['server/tests/**/*.js'],
+    },
+    watch: {
+      src: {
+        files: [
+          'server/**/*.js',
+          'Gruntfile.js',
+          'apiConfig.js'
+        ],
+        tasks: ['jshint', 'mochaTest']
+      }
     }
   });
 
