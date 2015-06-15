@@ -1,6 +1,13 @@
 # Current Sprint Items
+- Write tests for what you have. Use TDD for future features.
 - Web Worker
-  - Send that data to a users web browser
+  - Check to see if a user is logged into a game
+    - If they are, console.log something to screen.
+    - Send email
+      - Since we might be logging, responding with html, or
+        sending an e-mail, might need to start on an alert
+        module. Be able to pass that module the name of the function
+        from the alert module we want to use.
 
 # Features
 - Friends list
