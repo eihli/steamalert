@@ -11,7 +11,7 @@ describe('Web worker', function() {
     beforeEach(function() {
       spy = sinon.spy(worker, "getUserData");
     });
-    
+
     afterEach(function() {
       worker.getUserData.restore();
     });
@@ -28,8 +28,28 @@ describe('Web worker', function() {
       spy.getCall(0).args[1].should.be.a('function');
     });
 
-    it('should call a callback on the resulting data', function() {
+    it('should call a callback on the resulting data', function(done) {
+      spy.restore();
 
+      var fakeData = {
+        username: 'eric',
+        game: 'team fortress 2'
+      };
+
+      var callback = function(data) {
+        console.log(data);
+        return data;
+      };
+
+      callback = sinon.spy(callback);
+      stub = sinon.stub(worker, "getUserData");
+      
+      stub.yields(fakeData);
+      callback.calledOnce.should.equal(true);
+
+      callback.restore();
+      stub.restore();
+      done();
     });
     
   });
