@@ -1,6 +1,7 @@
 var should = require('chai').should();
 var worker = require('../worker');
 var sinon = require('sinon');
+var userData = require('./userData.js');
 
 describe('Web worker', function() {
 
@@ -13,6 +14,32 @@ describe('Web worker', function() {
     // Commented out so I don't make boatloads of e-mails request.
     xit('should call the function from alerts.js', function() {
       worker.alertUser('email', null, 'loktakwah@gmail.com').should.equal("Email sent");
+    });
+
+  });
+
+  describe('checkUser', function() {
+    var stub;
+
+    beforeEach(function() {
+      // Take over worker.api.getUserData and force it to return
+      // a certain value, this keeps it from making api calls to STEAM during
+      // tests.
+      stub = sinon.stub(worker.api, 'getUserData');
+      // stub.yields forces the worker.api.getUserData() function to call its
+      // callback with the given arguments.
+      stub.yields(null, userData.loggedInUser);
+    });
+
+    afterEach(function() {
+      stub.restore();
+    });
+
+    it('should return true if a user is logged into the game specified', function(done) {
+      worker.checkUser('76561197969413719', "Counter-Strike: Global Offensive", function(err, res) {
+        res.should.equal(true);
+        done();
+      });
     });
 
   });

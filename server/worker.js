@@ -10,10 +10,8 @@ var alerts = require('./alerts.js');
 var api = {
   getUserData: function(userId, cb) {
     userId = USERID;
-    console.log(userId);
-    var url = apiUrl + "?key=" + steamApiKey + "&steamids=" + userId
-    request.get(url,
-      function(err, res, body) {
+    var url = apiUrl + "?key=" + steamApiKey + "&steamids=" + userId;
+    request.get(url, function(err, res, body) {
         console.log(url);
         if (err) {
           console.log(err);
@@ -21,7 +19,7 @@ var api = {
         }
         if (!err) {
           console.log(body);
-          cb(body);
+          cb(null, body);
         }
       }
     );
@@ -41,8 +39,21 @@ var alertUser = function(alertType, userData, email, callback) {
   });
 };
 
+var checkUser = function(userId, gameName, cb) {
+  api.getUserData(userId, function(err, res) {
+    if (err) {
+      console.log("Error in checkUser: ", err);
+      cb(err);
+    } else {
+      console.log("Returning in checkUser from call to getUserData: ", res);
+      cb(null, res);
+    }
+  });
+};
+
 module.exports = {
   alertUser: alertUser,
   api: api,
-  webScrape: webScrape
+  webScrape: webScrape,
+  checkUser: checkUser
 };

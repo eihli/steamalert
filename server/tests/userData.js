@@ -1,5 +1,5 @@
-var users = [
-  {
+module.exports = {
+  "loggedOutUser": {
     "response": {
       "players": [
         {
@@ -19,7 +19,7 @@ var users = [
       ]
     }
   },
-  {
+  "loggedInUser": {
     "response": {
       "players": [
         {
@@ -41,7 +41,6 @@ var users = [
           "loccountrycode": "US"
         }
       ]
-      
     }
   }
-];
+};
