@@ -1,14 +1,8 @@
 # Current Sprint Items
-- Web Worker
-    - Send email
-      - Since we might be logging, responding with html, or
-        sending an e-mail, might need to start on an alert
-        module. Be able to pass that module the name of the function
-        from the alert module we want to use.
 
 # Features
 - Friends list
-- Receive email alerts
+* Receive email alerts
 - Persistant storage
 - Custom poll frequency
 - Custom game tracking

@@ -1,18 +1,18 @@
 var express = require('express'),
   app = express(),
-  worker = require('./worker');  
+  worker = require('./worker'),
+  db = require('./db.js'),
+  Alert = require('./models/alertModel');
 
 app.get('/', function(req, res) {
-  worker.api.getUserData(null, function(body) {
-    res.send(body);
+  Alert.find({}, function(err, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
   });
-});
-
-app.get('/test', function(req, res) {
-  worker.alertUser('email', null, 'loktakwah@gmail.com', function(result) {
-    console.log("Inside app.get('/test/')", result);
-    res.send(result);
-  });
+  res.send("Hello world");
 });
 
 app.listen(3000, function() {
