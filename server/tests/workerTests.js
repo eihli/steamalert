@@ -28,7 +28,7 @@ describe('Web worker', function() {
       stub = sinon.stub(worker.api, 'getUserData');
       // stub.yields forces the worker.api.getUserData() function to call its
       // callback with the given arguments.
-      stub.yields(null, userData.loggedInUser);
+      stub.yields(null, JSON.stringify(userData.loggedInUser));
     });
 
     afterEach(function() {

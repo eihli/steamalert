@@ -9,16 +9,14 @@ var alerts = require('./alerts.js');
 // The first is with the Steam api. The second is with a web scrape.
 var api = {
   getUserData: function(userId, cb) {
-    userId = USERID;
+    userId = userId || USERID;
     var url = apiUrl + "?key=" + steamApiKey + "&steamids=" + userId;
     request.get(url, function(err, res, body) {
-        console.log(url);
         if (err) {
           console.log(err);
           cb(err);
         }
         if (!err) {
-          console.log(body);
           cb(null, body);
         }
       }
@@ -33,29 +31,56 @@ var webScrape = {
 };
 
 var alertUser = function(alertType, userData, email, callback) {
-  return alerts[alertType](userData, email, function(result) {
+  callback = callback || function() {};
+  alerts[alertType](userData, email, function(err, result) {
     console.log("Inside alertUser ", result);
-    callback(result);
+    callback(err, result);
   });
 };
 
 var checkUser = function(userId, gameName, cb) {
   api.getUserData(userId, function(err, res) {
+    console.log('err', err);
+    console.log('res', res);
+    res = JSON.parse(res);
+    console.log(res);
+    console.log(res.response.players);
     if (err) {
       cb(err);
     } else {
+      console.log(res.response.players[0]);
       if (res && res.response && res.response.players) {
         if (res.response.players[0].gameextrainfo === gameName){
           cb(null, true);
         }
       } else {
+        console.log('else statement in checkuser');
         cb(null, false);
       }
     }
   });
 };
 
+var run = function(userId, gameName) {
+  var userData = {userId: userId, gameName: gameName};
+  checkUser(userId, gameName, function(err, loggedIn) {
+    if (loggedIn) {
+      alertUser('email', userData, 'loktakwah@gmail.com', function(err, res) {
+        console.log(userId + " is logged in to " + gameName);
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(res);
+        }
+      });
+    } else {
+      console.log(userId + " is not logged in to " + gameName);
+    }
+  });
+};
+
 module.exports = {
+  run: run,
   alertUser: alertUser,
   api: api,
   webScrape: webScrape,

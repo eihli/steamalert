@@ -22,7 +22,7 @@ module.exports = {
       if (err) {
         callback(err);
       } else {
-        callback(res);
+        callback(null, res);
       }
     });
   }

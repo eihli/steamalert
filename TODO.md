@@ -1,6 +1,5 @@
 # Current Sprint Items
 - Web Worker
-  - Check to see if a user is logged into a game
     - If they are, console.log something to screen.
     - Send email
       - Since we might be logging, responding with html, or
