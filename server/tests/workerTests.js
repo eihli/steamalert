@@ -37,6 +37,7 @@ describe('Web worker', function() {
 
     it('should return true if a user is logged into the game specified', function(done) {
       worker.checkUser('76561197969413719', "Counter-Strike: Global Offensive", function(err, res) {
+        console.log(res);
         res.should.equal(true);
         done();
       });

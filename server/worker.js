@@ -42,11 +42,15 @@ var alertUser = function(alertType, userData, email, callback) {
 var checkUser = function(userId, gameName, cb) {
   api.getUserData(userId, function(err, res) {
     if (err) {
-      console.log("Error in checkUser: ", err);
       cb(err);
     } else {
-      console.log("Returning in checkUser from call to getUserData: ", res);
-      cb(null, res);
+      if (res && res.response && res.response.players) {
+        if (res.response.players[0].gameextrainfo === gameName){
+          cb(null, true);
+        }
+      } else {
+        cb(null, false);
+      }
     }
   });
 };
