@@ -15,6 +15,9 @@ app.get('/', function(req, res) {
   res.send("Hello world");
 });
 
+app.post('/add', function(req, res) {
+});
+
 app.listen(3000, function() {
   console.log('Listening on port 3000');
 });
