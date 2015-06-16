@@ -1,11 +1,18 @@
 var express = require('express'),
   app = express(),
-  getUserData = require('./worker');  
+  worker = require('./worker');  
 
 app.get('/', function(req, res) {
-  getUserData(null, function(body) {
+  worker.getUserData(null, function(body) {
     console.log(body);
     res.send(body);
+  });
+});
+
+app.get('/test', function(req, res) {
+  worker.alertUser('email', null, 'loktakwah@gmail.com', function(result) {
+    console.log("Inside app.get('/test/')", result);
+    res.send(result);
   });
 });
 

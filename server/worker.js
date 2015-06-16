@@ -22,8 +22,11 @@ var getUserData = function(userId, cb) {
   );
 };
 
-var alertUser = function(alertType, userData, email) {
-  return alerts[alertType](userData, email);
+var alertUser = function(alertType, userData, email, callback) {
+  return alerts[alertType](userData, email, function(result) {
+    console.log("Inside alertUser ", result);
+    callback(result);
+  });
 };
 
 module.exports = {

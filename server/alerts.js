@@ -10,7 +10,7 @@ var sgOptions = {
 var mailer = nodemailer.createTransport(sgTransport(sgOptions));
 
 module.exports = {
-  email: function(userData, emailAddress) {
+  email: function(userData, emailAddress, callback) {
     var email = {
       to: emailAddress,
       from: 'eihli@owoga.com',
@@ -20,12 +20,10 @@ module.exports = {
     };
     mailer.sendMail(email, function(err, res) {
       if (err) {
-        console.log('Error sending email: ', err);
+        callback(err);
       } else {
-        console.log('Email sent: ', res);
+        callback(res);
       }
     });
-    console.log("api info: ", apiConfig.sgUsername, apiConfig.sgPassword);
-    return "Email sent";
   }
 };
