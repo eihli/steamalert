@@ -81,7 +81,7 @@ describe('Web worker', function() {
     });
 
     // Commented out because I don't know how to use stubs/mocks to test api calls.
-    xit('should call a callback on the resulting data', function(done) {
+    it('should call a callback on the resulting data', function(done) {
       spy.restore();
 
       var fakeData = {
@@ -90,16 +90,25 @@ describe('Web worker', function() {
       };
 
       var callback = sinon.spy();
-      stub = sinon.stub(api.worker, "getUserData");
-      stub.yields(fakeData);
+      stub = sinon.stub(worker.api, "getUserData");
+      stub.yields(null, fakeData);
 
-      process.nextTick(function() {
-        callback.calledOnce.should.equal(true);
-
-        callback.restore();
-        stub.restore();
-        done();
+      worker.api.getUserData('12341234', function(err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+          data.should.eql(fakeData);
+          done();
+        }
       });
+
+      // process.nextTick(function() {
+      //   callback.calledOnce.should.equal(true);
+
+      //   callback.restore();
+      //   stub.restore();
+      //   done();
+      // });
 
     });
     

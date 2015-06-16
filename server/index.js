@@ -11,6 +11,7 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.set('view engine', 'jade');
 app.set('views', (path.join(__dirname, '../client/views')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 app.get('/', function(req, res) {
   res.render('index');
@@ -31,6 +32,7 @@ app.post('/add', function(req, res) {
     if(err) {
       console.log(err);
     } else {
+      console.log(data);
       res.send(data);
     }
   });
