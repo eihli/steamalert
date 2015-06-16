@@ -1,5 +1,4 @@
 # Current Sprint Items
-- Write tests for what you have. Use TDD for future features.
 - Web Worker
   - Check to see if a user is logged into a game
     - If they are, console.log something to screen.
