@@ -1,4 +1,7 @@
 # Current Sprint Items
+- Database
+  - Write tests for an api
+  - write an api to add users to database
 
 # Features
 - Friends list

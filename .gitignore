@@ -2,3 +2,5 @@ node_modules/
 apiConfig.js
 config.js
 server/tests/data
+*.DS_Store
+tests/server/data

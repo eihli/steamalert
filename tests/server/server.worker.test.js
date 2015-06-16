@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var worker = require('../worker');
+var worker = require('../../server/worker');
 var sinon = require('sinon');
 var userData = require('./userData.js');
 

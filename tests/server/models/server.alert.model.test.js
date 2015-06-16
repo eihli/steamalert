@@ -2,7 +2,7 @@ var should = require('chai').should();
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
-var Alert = require('../models/alertModel.js');
+var Alert = require('../../../server/models/alertModel.js');
 
 describe('Database Tests', function() {
 
@@ -23,9 +23,8 @@ describe('Database Tests', function() {
   });
 
   describe('should connect to a test database', function() {
-    it('should insert into database', function() {
+    xit('should insert into database', function() {
       Alert.find({}, function(err, res) {
-        console.log(res);
       });
     });
   });

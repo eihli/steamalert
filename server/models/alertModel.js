@@ -24,7 +24,7 @@ alertSchema.methods.addAlert = function(email, userId, gameName, cb) {
       console.log("Saved new alert to database");
       cb(null, {result: "success"});
     }
-  });;
+  });
 };
 
 module.exports = Alert;
