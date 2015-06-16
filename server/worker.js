@@ -40,15 +40,10 @@ var alertUser = function(alertType, userData, email, callback) {
 
 var checkUser = function(userId, gameName, cb) {
   api.getUserData(userId, function(err, res) {
-    console.log('err', err);
-    console.log('res', res);
     res = JSON.parse(res);
-    console.log(res);
-    console.log(res.response.players);
     if (err) {
       cb(err);
     } else {
-      console.log(res.response.players[0]);
       if (res && res.response && res.response.players) {
         if (res.response.players[0].gameextrainfo === gameName){
           cb(null, true);

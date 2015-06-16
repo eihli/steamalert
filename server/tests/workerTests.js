@@ -7,13 +7,25 @@ describe('Web worker', function() {
 
   describe('alertUser', function() {
 
+    var stub;
+    // Stubbed so we don't make boatloads of emails while testing.
+    beforeEach(function() {
+      stub = sinon.stub(worker, 'alertUser');
+      stub.yields(null, {result: "success"});
+    });
+    afterEach(function() {
+      stub.restore();
+    });
+
     it('should be a function of worker', function() {
       worker.alertUser.should.be.a('function');
     });
 
-    // Commented out so I don't make boatloads of e-mails request.
-    xit('should call the function from alerts.js', function() {
-      worker.alertUser('email', null, 'loktakwah@gmail.com').should.equal("Email sent");
+    it('should call the function from alerts.js', function(done) {
+      worker.alertUser('email', userData.loggedInUser, 'loktakwah@gmail.com', function(err, res) {
+        res.result.should.equal("success");
+        done();
+      });
     });
 
   });
@@ -37,7 +49,6 @@ describe('Web worker', function() {
 
     it('should return true if a user is logged into the game specified', function(done) {
       worker.checkUser('76561197969413719', "Counter-Strike: Global Offensive", function(err, res) {
-        console.log(res);
         res.should.equal(true);
         done();
       });
@@ -79,7 +90,7 @@ describe('Web worker', function() {
       };
 
       var callback = sinon.spy();
-      stub = sinon.stub(worker, "getUserData");
+      stub = sinon.stub(api.worker, "getUserData");
       stub.yields(fakeData);
 
       process.nextTick(function() {

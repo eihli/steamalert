@@ -1,6 +1,5 @@
 # Current Sprint Items
 - Web Worker
-    - If they are, console.log something to screen.
     - Send email
       - Since we might be logging, responding with html, or
         sending an e-mail, might need to start on an alert

@@ -4,7 +4,6 @@ var express = require('express'),
 
 app.get('/', function(req, res) {
   worker.api.getUserData(null, function(body) {
-    console.log(body);
     res.send(body);
   });
 });
