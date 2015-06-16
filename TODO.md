@@ -1,9 +1,10 @@
 # Current Sprint Items
-- Have a form to submit userId and game name.
-- Have form add alert to database.
+- Empty database on server start.
 
 ## Before Production
 - Remove the livereload script from index.jade
+- Get routes out of index.js
+- Don't drop collection every time server starts
 
 ## Delayed Sprint Items
 Figure out how to test this stuff with mocks/stubs. In the meantime, test by hand. Move on.
