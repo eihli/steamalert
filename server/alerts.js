@@ -1,10 +1,10 @@
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
-var apiConfig = require('../apiConfig');
+var config = require('../config');
 var sgOptions = {
   auth: {
-    api_user: apiConfig.sgUsername,
-    api_key: apiConfig.sgPassword
+    api_user: config.sgUsername,
+    api_key: config.sgPassword
   }
 };
 var mailer = nodemailer.createTransport(sgTransport(sgOptions));
