@@ -29,6 +29,12 @@ module.exports = function(grunt) {
           'apiConfig.js'
         ],
         tasks: ['jshint', 'mochaTest']
+      },
+      html: {
+        files: 'server/views/**/*.jade',
+        options: {
+          livereload: true
+        }
       }
     }
   });

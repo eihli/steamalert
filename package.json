@@ -23,11 +23,13 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.2.5",
+    "morgan": "^1.6.0",
     "sinon": "^1.15.3"
   },
   "dependencies": {
     "body-parser": "^1.13.0",
     "express": "^4.12.4",
+    "jade": "^1.11.0",
     "mongo": "^0.1.0",
     "mongodb": "^2.0.33",
     "mongoose": "^4.0.5",

@@ -1,13 +1,22 @@
 var express = require('express'),
   app = express(),
+  path = require('path'),
   worker = require('./worker'),
-  db = require('./db.js'),
+  morgan = require('morgan'),
   bodyParser = require('body-parser'),
+  db = require('./db.js'),
   alerts = require('./controllers/alert.server.controller');
 
+app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.set('view engine', 'jade');
+app.set('views', (path.join(__dirname, '../client/views')));
 
 app.get('/', function(req, res) {
+  res.render('index');
+});
+
+app.get('/list', function(req, res) {
   alerts.getAll(req, res, function(err, data) {
     if (err) {
       console.log(err);
@@ -15,11 +24,9 @@ app.get('/', function(req, res) {
       console.log(data);
     }
   });
-  res.send("Hello world");
 });
 
 app.post('/add', function(req, res) {
-  console.log(req.body);
   alerts.create(req, res, function(err, data) {
     if(err) {
       console.log(err);

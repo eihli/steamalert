@@ -3,7 +3,7 @@ var config = require('../config');
 var apiUrl = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
 var USERID = '76561197969413719'; // 76561198072708366; // 76561198072708366  // 76561198056532429
 var steamApiKey = process.env.STEAM_API_KEY || config.steamApiKey;
-var alerts = require('./alerts.js');
+var alerts = require('./utils/emailAlert.js');
 
 // We define two different ways to get what game the user is logged into.
 // The first is with the Steam api. The second is with a web scrape.

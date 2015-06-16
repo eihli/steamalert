@@ -1,4 +1,12 @@
 # Current Sprint Items
+- Have a form to submit userId and game name.
+- Have form add alert to database.
+
+## Before Production
+- Remove the livereload script from index.jade
+
+## Delayed Sprint Items
+Figure out how to test this stuff with mocks/stubs. In the meantime, test by hand. Move on.
 - Database
   - Write tests for an api
   - write an api to add users to database
@@ -6,7 +14,7 @@
 # Features
 - Friends list
 * Receive email alerts
-- Persistant storage
+* Persistant storage
 - Custom poll frequency
 - Custom game tracking
 - User authentication

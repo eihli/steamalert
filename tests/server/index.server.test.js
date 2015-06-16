@@ -15,7 +15,7 @@ describe('Server API', function() {
         "gameName": "Counter-Strike: Global Offensive"
       },
     };
-    it('a post request to /add should add an alert to the database', function() {
+    xit('a post request to /add should add an alert to the database', function() {
       request(options, function(err, res, body) {
         if (err) {
           console.log("Error with post request, ", err);
